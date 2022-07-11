@@ -1,0 +1,46 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 12.5rem;);
+  justify-content: center;
+  align-items: center;
+
+  color: var(--gray-100);
+  margin-top: 4rem;
+}
+.dashTasks {
+  width: 48rem;
+  display: flex;
+  justify-content: space-between;
+}
+#tasksCreated :first-child {
+  color: var(--blue);
+}
+#tasksCompleted :first-child {
+  color: var(--purple);
+}
+.counter {
+  background-color: var(--gray-400);
+  width: 1.6rem;
+  height: 1.187rem;
+  padding: 3px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+}
+.content {
+  margin-top: 1.5rem;
+  display: flex;
+}
+.emptyNotification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 46rem;
+  height: 15.25rem;
+  gap: 1rem;
+}
+.emptyNotification span {
+  color: var(--gray-300);
+}

@@ -4,7 +4,7 @@
   box-size: border-box;
 }
 
-header {
+.header {
   display: flex;
   flex-direction: column;
   background-color: var(--gray-700);
@@ -33,7 +33,7 @@ input[type="text"] {
   color: var(--gray-300);
   border-radius: 8px;
   outline: none;
-  border: none;
+  border: 1px solid var(--gray-700);
   padding: 0 1rem;
 }
 input[type="text"]:focus {
