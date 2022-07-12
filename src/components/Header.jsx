@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/Logo";
-import { Plus, PlusCircle } from "phosphor-react";
+import { PlusCircle } from "phosphor-react";
 import style from "./Header.module.css";
 
-export default function Header() {
+export default function Header({ handleTasks }) {
+  const [taskOnChange, setTaskOnChange] = useState("");
+  function handleTaskOnChange() {
+    setTaskOnChange(event.target.value);
+  }
+  console.log(taskOnChange);
+  function createNewTask() {
+    handleTaskOnChange();
+
+    event.preventDefault();
+    handleTasks(taskOnChange);
+    event.target.task.value = "";
+  }
   return (
     <>
       <header className={style.header}>
@@ -12,8 +24,13 @@ export default function Header() {
         </div>
       </header>
       <div className={style.formGroup}>
-        <form className={style.formStyle}>
-          <input type="text" name="" id="task" />
+        <form onSubmit={createNewTask} className={style.formStyle}>
+          <input
+            type="text"
+            name="task"
+            onChange={handleTaskOnChange}
+            id="task"
+          />
           <button className={style.createButton}>
             Criar <PlusCircle size={20} />
           </button>

@@ -21,8 +21,8 @@ export default function Home({ tasks }) {
           <div className={style.emptyNotification}>
             <Empty />
             <span>
-              <strong> Você ainda não tem tarefas cadastradas</strong> <br /> Crie tarefas e
-              organize seus itens a fazer
+              <strong> Você ainda não tem tarefas cadastradas</strong> <br />{" "}
+              Crie tarefas e organize seus itens a fazer
             </span>
           </div>
         )}

@@ -5,11 +5,20 @@ import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  function handleTasks(task) {
+    setTasks((tasks) => {
+      const newTask = {
+        content: task,
+        finished: false,
+      };
+      return [...tasks, newTask];
+    });
+  }
 
   console.log(tasks);
   return (
     <div className={style.wrapper}>
-      <Header />
+      <Header handleTasks={handleTasks} />
       <Home tasks={tasks} />
     </div>
   );
