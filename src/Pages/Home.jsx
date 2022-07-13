@@ -2,8 +2,15 @@ import React from "react";
 import Empty from "../assets/Empty";
 import Task from "../components/Task";
 import style from "./Home.module.css";
-export default function Home({ tasks, tasksCreated }) {
+export default function Home({ tasks, tasksCreated, updateTasks }) {
   // updateTaskStatus();
+
+  function handleDeleteTask(taskToDelete) {
+    const tasksWithoutDeleted = tasks.filter((t) => {
+      return t !== taskToDelete;
+    });
+    updateTasks(tasksWithoutDeleted);
+  }
   return (
     <main className={style.home}>
       <header className={style.dashTasks}>
@@ -22,9 +29,11 @@ export default function Home({ tasks, tasksCreated }) {
             return (
               <Task
                 key={task.id}
-                id={task.id}
+               
                 content={task.content}
                 status={false}
+                task={task}
+                onDeleteTask={handleDeleteTask}
               />
             );
           })

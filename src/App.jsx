@@ -22,22 +22,22 @@ function App() {
       return [...tasks, newTask];
     });
   }
-
-  function updateTaskStatus(tasks, id, status) {
-    tasks.map((task) => {
-      if (tasks.id === id) {
-        task.status = status;
-      }
+  function updateTasks(newTasks) {
+    setTasks(newTasks);
+    setTasksCreated((t) => {
+      return t - 1;
     });
   }
-
+  function updateStatusTasks(task) {
+    
+  }
   return (
     <div className={style.wrapper}>
       <Header handleTasks={handleTasks} />
       <Home
         tasks={tasks}
         tasksCreated={tasksCreated}
-        updateTaskStatus={updateTaskStatus}
+        updateTasks={updateTasks}
       />
     </div>
   );
