@@ -5,21 +5,40 @@ import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [tasksCreated, setTasksCreated] = useState(0);
+  function addTasksCreated() {
+    setTasksCreated((tasksCreated) => {
+      return tasksCreated + 1;
+    });
+  }
   function handleTasks(task) {
     setTasks((tasks) => {
       const newTask = {
+        id: Date.now(),
         content: task,
-        finished: false,
+        status: false,
       };
+      addTasksCreated();
       return [...tasks, newTask];
     });
   }
 
-  console.log(tasks);
+  function updateTaskStatus(tasks, id, status) {
+    tasks.map((task) => {
+      if (tasks.id === id) {
+        task.status = status;
+      }
+    });
+  }
+
   return (
     <div className={style.wrapper}>
       <Header handleTasks={handleTasks} />
-      <Home tasks={tasks} />
+      <Home
+        tasks={tasks}
+        tasksCreated={tasksCreated}
+        updateTaskStatus={updateTaskStatus}
+      />
     </div>
   );
 }
