@@ -2,19 +2,30 @@ import React, { useState } from "react";
 import Logo from "../assets/Logo";
 import { PlusCircle } from "phosphor-react";
 import style from "./Header.module.css";
+import Swal from "sweetalert2";
 
 export default function Header({ handleTasks }) {
   const [taskOnChange, setTaskOnChange] = useState("");
   function handleTaskOnChange() {
     setTaskOnChange(event.target.value);
   }
-  console.log(taskOnChange);
+  // console.log(taskOnChange);
   function createNewTask() {
     handleTaskOnChange();
+    // console.log(taskOnChange.length);
 
     event.preventDefault();
-    handleTasks(taskOnChange);
-    event.target.task.value = "";
+    if (typeof taskOnChange == "undefined") {
+      Swal.fire({
+        title: "Erro!",
+        text: "Não é possível adicionar uma tarefa vazia",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    } else {
+      handleTasks(taskOnChange);
+      event.target.task.value = "";
+    }
   }
   return (
     <>

@@ -2,14 +2,25 @@ import React from "react";
 import Empty from "../assets/Empty";
 import Task from "../components/Task";
 import style from "./Home.module.css";
-export default function Home({ tasks, tasksCreated, updateTasks }) {
+export default function Home({
+  tasks,
+  tasksCreated,
+  updateTasks,
+  tasksFinished,
+  addTasks,
+  removeTasksCreated
+}) {
   // updateTaskStatus();
 
   function handleDeleteTask(taskToDelete) {
+    console.log(taskToDelete);
     const tasksWithoutDeleted = tasks.filter((t) => {
+
       return t !== taskToDelete;
     });
     updateTasks(tasksWithoutDeleted);
+    removeTasksCreated()
+
   }
   return (
     <main className={style.home}>
@@ -20,7 +31,7 @@ export default function Home({ tasks, tasksCreated, updateTasks }) {
         </div>
         <div id={style.tasksCompleted}>
           <span>Concluidas </span>
-          <span className={style.counter}>0</span>
+          <span className={style.counter}>{tasksFinished}</span>
         </div>
       </header>
       <div className={style.content}>
@@ -29,11 +40,10 @@ export default function Home({ tasks, tasksCreated, updateTasks }) {
             return (
               <Task
                 key={task.id}
-               
                 content={task.content}
-                status={false}
                 task={task}
                 onDeleteTask={handleDeleteTask}
+                // onUpdateTask={updateStatusTasks}
               />
             );
           })
