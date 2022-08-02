@@ -8,7 +8,10 @@ export default function Home({
   updateTasks,
   tasksFinished,
   addTasks,
-  removeTasksCreated
+  
+  updateStatusTasks,
+  removeTasksCreated,
+  removeTasksFinished
 }) {
   // updateTaskStatus();
 
@@ -43,7 +46,8 @@ export default function Home({
                 content={task.content}
                 task={task}
                 onDeleteTask={handleDeleteTask}
-                // onUpdateTask={updateStatusTasks}
+                onUpdateTask={updateStatusTasks}
+                onRemoveTasksFinished={removeTasksFinished}
               />
             );
           })

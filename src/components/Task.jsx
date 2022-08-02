@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import style from "./Task.module.css";
 export default function Task({
   content,
-
+  onUpdateTask,
   onDeleteTask,
   task,
-
+  onRemoveTasksFinished
 }) {
   const [finished, setFinished] = useState(true);
   function handleFinishedTask() {
@@ -17,9 +17,16 @@ export default function Task({
     onDeleteTask(task);
   }
   function handleUpdateTask() {
-    console.log(task)
-    handleFinishedTask(task);
-    
+    // console.log(finished)
+    handleFinishedTask();
+
+    task.status=finished
+    console.log(task.status)
+    onUpdateTask(task)
+  }
+  function handleDeleteTaskFinished(){
+    handleDeleteTask()
+    onRemoveTasksFinished()
   }
   return (
     <div className={style.container}>
@@ -29,7 +36,7 @@ export default function Task({
         onChange={handleUpdateTask}
       />
       <span className={style.content}>{content}</span>
-      <button onClick={handleDeleteTask} className={style.deleteButton}>
+      <button onClick={task.status ==false?handleDeleteTask:handleDeleteTaskFinished} className={style.deleteButton}>
         <Trash size={24} />
       </button>
     </div>

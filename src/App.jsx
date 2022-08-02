@@ -18,6 +18,12 @@ function App() {
       return tasksCreated - 1;
     })
   }
+  function removeTasksFinished(){
+    // removeTasksCreated()
+    setTasksFinished((t)=>{
+      return t - 1;
+    })
+  }
   function handleTasks(task) {
     setTasks((tasks) => {
       const newTask = {
@@ -41,7 +47,7 @@ function App() {
       setTasksFinished((t) => {
         return t + 1;
       });
-    } else {
+    } else if(tasksFinished >0){
       setTasksFinished((t) => {
         return t - 1;
       });
@@ -54,6 +60,7 @@ function App() {
         tasks={tasks}
         tasksCreated={tasksCreated}
         removeTasksCreated={removeTasksCreated}
+        removeTasksFinished={removeTasksFinished}
         updateStatusTasks={updateStatusTasks}
         updateTasks={updateTasks}
         tasksFinished={tasksFinished}
